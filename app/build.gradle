@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.lumora.gallery'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.lumora.gallery"
+        minSdk 33
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // One fixed key, so every new build installs over the old one and keeps your data.
+    signingConfigs {
+        lumora {
+            storeFile file('lumora.keystore')
+            storePassword 'lumora-gallery'
+            keyAlias 'lumora'
+            keyPassword 'lumora-gallery'
+        }
+    }
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.lumora
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
